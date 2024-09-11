@@ -27,7 +27,7 @@ const projects = [
     title: "QuizApp",
     image: "/quizapp.png",
     summary: "A geography Quiz App",
-    githubLink: "https://github.com/satanveer/webdev/tree/master/Quiz%20App",
+    githubLink: "https://webdev-fawn.vercel.app/",
     liveLink: "https://tic-tac-toe-sy5j-blel1sx7g-tanveers-projects-bb05f01e.vercel.app/",
     techStack: ["HTML", "CSS", "JavaScript"]
   },
