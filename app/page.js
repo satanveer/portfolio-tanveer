@@ -4,6 +4,8 @@ import React from "react";
 import { useState } from "react";
 import Navbar from "@/components/navbar";
 import Mainbody from "@/components/mainbody";
+import ProjectsSection from "@/components/ProjectSection";
+import AboutMe from "@/components/AboutMe";
 
 export const context = React.createContext()
 export default function Home() {
@@ -13,8 +15,10 @@ export default function Home() {
     
     <div>
       <context.Provider value={[isMenuOpen,setIsMenuOpen]}>
-        <Navbar ></Navbar>
+        <Navbar></Navbar>
         <Mainbody menuState={isMenuOpen}></Mainbody>
+        <ProjectsSection id="project"></ProjectsSection>
+        <AboutMe id="about"></AboutMe>
       </context.Provider>
     </div>
   );
