@@ -32,7 +32,7 @@ export default function Navbar({ refs }) {
 
   const scrollToSection = (ref) => {
     ref.current.scrollIntoView({ behavior: "smooth" });
-    setIsMenuOpen(false); // Close the menu after clicking
+    setIsMenuOpen(false); 
   };
 
   return (
@@ -43,7 +43,6 @@ export default function Navbar({ refs }) {
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
       >
-        {/* Toggle button content */}
         <Button
           variant="outline"
           size="icon"
@@ -52,7 +51,7 @@ export default function Navbar({ refs }) {
           aria-expanded={isMenuOpen}
           className="relative focus:outline-none bg-white text-purple-500 border-none text-xl align-middle justify-center flex"
         >
-          ☰{/* Menu icon (can replace with an actual icon or svg) */}
+          ☰
         </Button>
 
         <motion.div

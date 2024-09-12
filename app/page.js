@@ -19,10 +19,7 @@ export default function Home() {
   return (
     <div className="overflow-hidden">
       <context.Provider value={[isMenuOpen, setIsMenuOpen]}>
-        {/* Pass refs to Navbar */}
         <Navbar refs={{ homeRef, aboutRef, projectsRef }} />
-        
-        {/* Assign refs to the sections */}
         <div ref={homeRef}>
           <Mainbody menuState={isMenuOpen} />
         </div>
