@@ -1,24 +1,39 @@
-"use client"
-import Image from "next/image";
-import React from "react";
-import { useState } from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import Navbar from "@/components/navbar";
 import Mainbody from "@/components/mainbody";
 import ProjectsSection from "@/components/ProjectSection";
 import AboutMe from "@/components/AboutMe";
 
-export const context = React.createContext()
+export const context = React.createContext();
+
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Create refs for the sections
+  const homeRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+
   return (
-    
-    <div>
-      <context.Provider value={[isMenuOpen,setIsMenuOpen]}>
-        <Navbar></Navbar>
-        <Mainbody menuState={isMenuOpen}></Mainbody>
-        <ProjectsSection id="project"></ProjectsSection>
-        <AboutMe id="about"></AboutMe>
+    <div className="overflow-hidden">
+      <context.Provider value={[isMenuOpen, setIsMenuOpen]}>
+        {/* Pass refs to Navbar */}
+        <Navbar refs={{ homeRef, aboutRef, projectsRef }} />
+        
+        {/* Assign refs to the sections */}
+        <div ref={homeRef}>
+          <Mainbody menuState={isMenuOpen} />
+        </div>
+        
+        <div ref={aboutRef}>
+          <AboutMe />
+        </div>
+        
+        <div ref={projectsRef}>
+          <ProjectsSection />
+        </div>
       </context.Provider>
     </div>
   );
