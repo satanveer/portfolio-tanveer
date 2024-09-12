@@ -24,13 +24,13 @@ export default function Home() {
           <Mainbody menuState={isMenuOpen} />
         </div>
         
+        <div ref={projectsRef}>
+          <ProjectsSection />
+        </div>
         <div ref={aboutRef}>
           <AboutMe />
         </div>
         
-        <div ref={projectsRef}>
-          <ProjectsSection />
-        </div>
       </context.Provider>
     </div>
   );
