@@ -11,7 +11,7 @@ export const context = React.createContext();
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Create refs for the sections
+  
   const homeRef = useRef(null);
   const aboutRef = useRef(null);
   const projectsRef = useRef(null);

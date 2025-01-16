@@ -11,9 +11,19 @@ import Link from 'next/link'
 
 const experiences = [
   {
+    title: "Software Developer Intern",
+    company: "Fidelity International",
+    period: "Jan 2025 - Present",
+    description: (
+      <>
+        Software Developer Intern at Fidelity Internatioal.{' '}
+      </>
+    )
+  },
+  {
     title: "FOUNDER",
     company: "AssignmentPal",
-    period: "2022 - Present",
+    period: "Nov 2022 - Jan 2025",
     description: (
       <>
         Your global academic support team. Expert help for all your needs.{' '}
