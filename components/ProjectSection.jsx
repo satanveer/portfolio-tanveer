@@ -16,28 +16,20 @@ const projects = [
     techStack: ["React.js", "Next.js", "TailwindCSS"]
   },
   {
-    title: "Tic Tac Toe",
-    image: "/tictactoe.png",
-    summary: "A simple Tic Tac Toe Game",
-    githubLink: "https://github.com/satanveer/webdev/tree/master/Tic%20Tac%20Toe",
-    liveLink: "https://tic-tac-toe-sy5j-blel1sx7g-tanveers-projects-bb05f01e.vercel.app/",
-    techStack: ["HTML", "TailWindCSS", "JavaScript"]
+    title: "BobbyFlow",
+    image: "/bobbyflow.png",
+    summary: "A productivity app with deep insights about your focus sessions, Pomodoro activity, Google Calendar integration, and note-taking ability.",
+    githubLink: "https://github.com/satanveer/focus-flow",
+    liveLink: "https://focus-flow-eosin.vercel.app/",
+    techStack: ["React", "Appwrite", "TailwindCSS"]
   },
   {
-    title: "QuizApp",
-    image: "/quizapp.png",
-    summary: "A geography Quiz App",
-    githubLink: "https://webdev-fawn.vercel.app/",
-    liveLink: "https://tic-tac-toe-sy5j-blel1sx7g-tanveers-projects-bb05f01e.vercel.app/",
-    techStack: ["HTML", "CSS", "JavaScript"]
-  },
-  {
-    title: "To Do List",
-    image: "/TDL.png",
-    summary: "A simple TDL app using Vanilla Js",
-    githubLink: "https://github.com/satanveer/webdev/tree/master/ToDoList",
-    liveLink: "https://todolist-sand-five.vercel.app/",
-    techStack: ["HTML", "CSS", "JavaScript"]
+    title: "DesiHatti",
+    image: "/desihatti.png",
+    summary: "A property dealing platform. Built with React, Spring Boot, and Tailwind.",
+    githubLink: "https://github.com/satanveer/dhfe",
+    liveLink: "https://dh-fe-psi.vercel.app/",
+    techStack: ["React", "Spring Boot", "TailwindCSS"]
   }
 ]
 
