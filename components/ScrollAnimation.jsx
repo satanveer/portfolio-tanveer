@@ -7,20 +7,26 @@ const ScrollAnimation = ({ children }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const element = ref.current
-      const rect = element.getBoundingClientRect()
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        controls.start({ opacity: 1, y: 0 })
-      } else {
-        controls.start({ opacity: 0, y: 50 })
+      if (typeof window !== 'undefined') {
+        const element = ref.current
+        const rect = element.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          controls.start({ opacity: 1, y: 0 })
+        } else {
+          controls.start({ opacity: 0, y: 50 })
+        }
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll() 
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll)
+      handleScroll()
+    }
 
     return () => {
-      window.removeEventListener('scroll', handleScroll)
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll)
+      }
     }
   }, [controls])
 

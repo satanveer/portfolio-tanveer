@@ -1,5 +1,5 @@
-"use client"
 import React, { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from "framer-motion"
@@ -72,8 +72,14 @@ export default function Mainbody({ menuState }) {
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY })
     }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('mousemove', handleMouseMove)
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
   }, [])
 
   return (
@@ -135,7 +141,7 @@ export default function Mainbody({ menuState }) {
               >
                 <p className="text-sm font-medium">Hey there!</p>
                 <p className="text-base leading-relaxed mt-1">
-                  Welcome to my portfolio! I'm Tanveer, a passionate full-stack developer who loves building amazing web experiences.
+                  Welcome to my portfolio! I&apos;m Tanveer, a passionate full-stack developer who loves building amazing web experiences.
                 </p>
               </motion.div>
               <p className="text-xs text-gray-400 mt-1 ml-2">Just now</p>
@@ -151,12 +157,12 @@ export default function Mainbody({ menuState }) {
                 style={{
                   rotateX: useTransform(
                     useMotionValue(mousePosition.y),
-                    [0, window.innerHeight],
+                    [0, typeof window !== 'undefined' ? window.innerHeight : 1000],
                     [10, -10]
                   ),
                   rotateY: useTransform(
                     useMotionValue(mousePosition.x),
-                    [0, window.innerWidth],
+                    [0, typeof window !== 'undefined' ? window.innerWidth : 1000],
                     [-10, 10]
                   ),
                 }}
@@ -242,7 +248,7 @@ export default function Mainbody({ menuState }) {
                     transition={{ duration: 0.2 }}
                   >
                     <p className="text-base leading-relaxed">
-                      Here are the technologies I work with! From frontend to backend, I've got you covered.
+                      Here are the technologies I work with! From frontend to backend, I&apos;ve got you covered.
                     </p>
                   </motion.div>
                   <p className="text-xs text-gray-400 mt-1 mr-2 text-right">Just now</p>
@@ -360,10 +366,12 @@ function SkillCard({ skill, index }) {
               transition={{ duration: 0.6 }}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} rounded-full blur-lg opacity-50`} />
-              <img
+              <Image
                 src={skill.logo}
                 alt={skill.name}
-                className="w-14 h-14 relative z-10"
+                width={56}
+                height={56}
+                className="relative z-10"
               />
             </motion.div>
             <div>
@@ -433,7 +441,7 @@ function ScrollAnimation({ children }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (ref.current) {
+      if (ref.current && typeof window !== 'undefined') {
         const { top } = ref.current.getBoundingClientRect()
         const windowHeight = window.innerHeight
 
@@ -443,10 +451,16 @@ function ScrollAnimation({ children }) {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll)
+      handleScroll()
+    }
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('scroll', handleScroll)
+      }
+    }
   }, [controls])
 
   return (

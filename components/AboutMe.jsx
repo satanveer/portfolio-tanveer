@@ -106,7 +106,7 @@ export default function AboutMe() {
               transition={{ duration: 0.2 }}
             >
               <p className="text-base leading-relaxed">
-                Let me tell you a bit about myself! Here's my journey, experience, and what drives me as a developer.
+                Let me tell you a bit about myself! Here&apos;s my journey, experience, and what drives me as a developer.
               </p>
             </motion.div>
             <p className="text-xs text-gray-400 mt-1 mr-2 text-right">Just now</p>
@@ -339,7 +339,7 @@ export default function AboutMe() {
         {/* Footer/Social */}
         <FadeInWhenVisible delay={0.6}>
           <footer className="text-center py-12 border-t border-white/10">
-            <p className="text-muted-foreground mb-6 text-lg">Let's connect and build something amazing!</p>
+            <p className="text-muted-foreground mb-6 text-lg">Let&apos;s connect and build something amazing!</p>
             <motion.div className="flex justify-center gap-6">
               <motion.a 
                 href="https://www.linkedin.com/in/satanveer/" 
