@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
-import { motion, AnimatePresence, useAnimation } from "framer-motion"
+import { motion, AnimatePresence, useAnimation, useMotionValue, useTransform } from "framer-motion"
 import { ChevronDown, ChevronUp } from 'lucide-react'
 
 const skills = [
@@ -10,109 +10,264 @@ const skills = [
     name: 'React.js', 
     logo: 'https://img.icons8.com/?size=100&id=wPohyHO_qO1a&format=png&color=000000', 
     summary: 'Building modern web applications', 
-    experience: 80 
+    experience: 80,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'Next.js', 
     logo: 'https://img.icons8.com/?size=100&id=yUdJlcKanVbh&format=png&color=000000', 
     summary: 'React framework for production', 
-    experience: 80 
+    experience: 80,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'JavaScript', 
     logo: 'https://img.icons8.com/?size=100&id=108784&format=png&color=000000', 
     summary: 'Dynamic programming language', 
-    experience: 60 
+    experience: 60,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'TypeScript', 
     logo: 'https://img.icons8.com/?size=100&id=uJM6fQYqDaZK&format=png&color=000000', 
     summary: 'Typed superset of JavaScript', 
-    experience: 70 
+    experience: 70,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'C++', 
     logo: 'https://img.icons8.com/?size=100&id=TpULddJc4gTh&format=png&color=000000', 
     summary: 'Versatile programming language', 
-    experience: 65 
+    experience: 65,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'Python', 
     logo: 'https://img.icons8.com/?size=100&id=13441&format=png&color=000000', 
     summary: 'Versatile programming language', 
-    experience: 65 
+    experience: 65,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'Tailwind CSS', 
     logo: 'https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000', 
     summary: 'Utility-first CSS framework', 
-    experience: 50 
+    experience: 50,
+    color: 'from-purple-500 to-purple-600'
   },
   { 
     name: 'MySQL', 
     logo: 'https://img.icons8.com/?size=100&id=rgPSE6nAB766&format=png&color=000000', 
     summary: 'Relational database management system', 
-    experience: 45 
+    experience: 45,
+    color: 'from-purple-500 to-purple-600'
   },
 ]
 
 export default function Mainbody({ menuState }) {
   const [isOpen, setIsOpen] = useState(false)
-  const [hoveredLetter, setHoveredLetter] = useState(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
 
   return (
     <div>
       <main className={`transition-opacity duration-500 ease-in-out ${menuState ? 'opacity-0' : 'opacity-100'}`}>
-        <div className="min-h-screen bg-background text-foreground">
-         
+        <div className="min-h-screen bg-background text-foreground relative overflow-hidden">
+          {/* Animated Background Gradient Blobs */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <motion.div
+              className="absolute top-0 -left-4 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 blob"
+              animate={{
+                x: [0, 100, 0],
+                y: [0, 50, 0],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute top-0 -right-4 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 blob"
+              animate={{
+                x: [0, -100, 0],
+                y: [0, 100, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute -bottom-8 left-20 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 blob"
+              animate={{
+                x: [0, 50, 0],
+                y: [0, -50, 0],
+              }}
+              transition={{
+                duration: 30,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </div>
+
+          {/* iMessage Introduction */}
+          <motion.div
+            className="pt-24 pb-8 flex justify-start px-4 sm:px-6 lg:px-8"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="max-w-md">
+              <motion.div
+                className="bg-blue-500 text-white rounded-3xl rounded-tl-sm px-5 py-3 shadow-lg"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.2 }}
+              >
+                <p className="text-sm font-medium">Hey there!</p>
+                <p className="text-base leading-relaxed mt-1">
+                  Welcome to my portfolio! I'm Tanveer, a passionate full-stack developer who loves building amazing web experiences.
+                </p>
+              </motion.div>
+              <p className="text-xs text-gray-400 mt-1 ml-2">Just now</p>
+            </div>
+          </motion.div>
+
+          {/* Hero Section with 3D Parallax */}
           <ScrollAnimation>
             <div className="relative h-screen flex items-center justify-center">
-              <div className="relative w-[280px] h-[400px] md:w-[420px] md:h-[600px] overflow-hidden z-10">
-                <img
-                  src="/Tanveer-portfolio.png"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {/* Profile Image with 3D Effect */}
               <motion.div
-                className="absolute text-9xl md:text-[400px] font-bold text-primary opacity-30 whitespace-nowrap select-none overflow-clip"
-                style={{ cursor: 'default' }}
+                className="relative z-10"
+                style={{
+                  rotateX: useTransform(
+                    useMotionValue(mousePosition.y),
+                    [0, window.innerHeight],
+                    [10, -10]
+                  ),
+                  rotateY: useTransform(
+                    useMotionValue(mousePosition.x),
+                    [0, window.innerWidth],
+                    [-10, 10]
+                  ),
+                }}
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ 
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 15,
+                  duration: 1
+                }}
+              >
+                <div className="relative w-[280px] h-[400px] md:w-[420px] md:h-[600px] overflow-hidden rounded-3xl shadow-2xl border-4 border-white/20">
+                  <motion.img
+                    src="/Tanveer-portfolio.png"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.5 }}
+                  />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 via-transparent to-transparent" />
+                </div>
+
+                {/* Floating Badge */}
+                <motion.div
+                  className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 glass-strong px-6 py-3 rounded-full shadow-xl"
+                  initial={{ y: 50, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  whileHover={{ scale: 1.1, y: -5 }}
+                >
+                  <p className="gradient-text text-xl font-bold whitespace-nowrap">
+                    Full Stack Developer ✨
+                  </p>
+                </motion.div>
+              </motion.div>
+
+              {/* Animated Text Background */}
+              <motion.div
+                className="absolute text-7xl md:text-[300px] lg:text-[400px] font-bold opacity-10 whitespace-nowrap select-none overflow-hidden pointer-events-none"
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
                 transition={{
                   x: {
                     repeat: Infinity,
                     repeatType: "loop",
-                    duration: 20,
+                    duration: 25,
                     ease: "linear",
                   },
                 }}
               >
-                {"Tanveer Singh".split('').map((letter, index) => (
-                  <motion.span
-                    key={index}
-                    className="inline-block"
-                    animate={{
-                      scale: hoveredLetter === index ? 1.2 : 1,
-                      color: hoveredLetter === index ? "#ff0000" : "#000000",
-                    }}
-                    transition={{ duration: 0.2 }}
-                    onMouseEnter={() => setHoveredLetter(index)}
-                    onMouseLeave={() => setHoveredLetter(null)}
-                  >
-                    {letter}
-                  </motion.span>
-                ))}
+                <span className="gradient-text">TANVEER SINGH</span>
               </motion.div>
+
             </div>
           </ScrollAnimation>
 
-          
+          {/* Scroll Indicator */}
+          <motion.div
+            className="flex flex-col items-center gap-2 text-muted-foreground pb-12"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <p className="text-sm font-medium">Scroll to explore</p>
+            <ChevronDown className="w-6 h-6" />
+          </motion.div>
+
+          {/* Skills Section */}
           <ScrollAnimation>
-            <div className="py-16 px-4 sm:px-6 lg:px-8">
-              <h2 className="text-3xl font-bold text-center mb-12">My Skills</h2>
+            <div className="py-24 px-4 sm:px-6 lg:px-8 relative">
+              {/* iMessage Bubble */}
+              <motion.div
+                className="max-w-7xl mx-auto mb-12 flex justify-end"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="max-w-md">
+                  <motion.div
+                    className="bg-gray-700 text-white rounded-3xl rounded-tr-sm px-5 py-3 shadow-lg"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <p className="text-base leading-relaxed">
+                      Here are the technologies I work with! From frontend to backend, I've got you covered.
+                    </p>
+                  </motion.div>
+                  <p className="text-xs text-gray-400 mt-1 mr-2 text-right">Just now</p>
+                </div>
+              </motion.div>
+              {/* Section Title */}
+              <motion.div
+                className="text-center mb-16"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.h2 
+                  className="text-5xl md:text-6xl font-bold mb-4"
+                  whileHover={{ scale: 1.05 }}
+                >
+                  <span className="gradient-text">My Skills</span>
+                </motion.h2>
+                <p className="text-lg text-muted-foreground">Technologies I work with</p>
+              </motion.div>
+
               <div className="max-w-7xl mx-auto">
                 <motion.div
-                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
                   layout
                 >
                   {skills.slice(0, isOpen ? skills.length : 4).map((skill, index) => (
@@ -121,27 +276,38 @@ export default function Mainbody({ menuState }) {
                       layout
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8, transition: { duration: 0.2 } }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      exit={{ opacity: 0, scale: 0.8 }}
+                      transition={{ 
+                        duration: 0.2,
+                        delay: index * 0.03,
+                        type: "spring",
+                        stiffness: 300
+                      }}
                     >
-                      <SkillCard skill={skill} />
+                      <SkillCard skill={skill} index={index} />
                     </motion.div>
                   ))}
                 </motion.div>
-                <motion.div className="mt-8 text-center" layout>
+
+                {/* View More Button */}
+                <motion.div 
+                  className="mt-12 text-center" 
+                  layout
+                  transition={{ duration: 0.2 }}
+                >
                   <Button
                     variant="outline"
                     onClick={() => setIsOpen(!isOpen)}
-                    className="inline-flex items-center"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none shadow-lg hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-200 px-8 py-6 text-lg"
                   >
                     {isOpen ? (
                       <>
-                        <ChevronUp className="mr-2 h-4 w-4" />
+                        <ChevronUp className="h-5 w-5" />
                         View Less
                       </>
                     ) : (
                       <>
-                        <ChevronDown className="mr-2 h-4 w-4" />
+                        <ChevronDown className="h-5 w-5" />
                         View More Skills
                       </>
                     )}
@@ -156,40 +322,106 @@ export default function Mainbody({ menuState }) {
   )
 }
 
-function SkillCard({ skill }) {
+function SkillCard({ skill, index }) {
+  const [isHovered, setIsHovered] = useState(false)
+  
   return (
     <motion.div
-      className="bg-card text-card-foreground rounded-lg shadow-lg p-6 h-full flex flex-col items-center"
-      whileHover={{
-        scale: 1.05,
-        rotateY: 10,
-        boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
+      className="relative group card-3d"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      whileHover={{ 
+        y: -10,
+        rotateX: 5,
+        rotateY: 5,
       }}
-      transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 20
-      }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     >
-      <motion.div className="mb-4 flex items-center">
-        <motion.img
-          src={skill.logo}
-          alt={skill.name}
-          className="w-12 h-12 mr-4"
-          whileHover={{ rotate: 360, scale: 1.2 }}
-          transition={{ duration: 0.5 }}
+      {/* Glowing Border Effect */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10"
+        style={{ background: `linear-gradient(135deg, var(--tw-gradient-stops))` }}
+      />
+      
+      <div className={`bg-card glass-strong rounded-2xl p-6 h-full flex flex-col items-start shadow-xl border border-white/10 overflow-hidden relative`}>
+        {/* Animated Background Gradient */}
+        <motion.div
+          className={`absolute inset-0 bg-gradient-to-br ${skill.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+          initial={false}
+          animate={isHovered ? { scale: 1.5 } : { scale: 1 }}
         />
-        <div>
-          <h3 className="text-xl font-semibold">{skill.name}</h3>
-          <p className="text-sm text-muted-foreground">{skill.summary}</p>
+
+        {/* Content */}
+        <div className="relative z-10 w-full">
+          {/* Logo and Title */}
+          <div className="flex items-center gap-4 mb-4">
+            <motion.div
+              className="relative"
+              whileHover={{ rotate: 360, scale: 1.2 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} rounded-full blur-lg opacity-50`} />
+              <img
+                src={skill.logo}
+                alt={skill.name}
+                className="w-14 h-14 relative z-10"
+              />
+            </motion.div>
+            <div>
+              <h3 className="text-xl font-bold">{skill.name}</h3>
+              <p className="text-sm text-muted-foreground">{skill.summary}</p>
+            </div>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="space-y-2 w-full">
+            <div className="flex justify-between text-sm font-medium">
+              <span>Experience</span>
+              <motion.span
+                key={skill.experience}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="font-bold"
+              >
+                {skill.experience}%
+              </motion.span>
+            </div>
+            <div className="relative">
+              <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <motion.div
+                  className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${skill.experience}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: index * 0.1 }}
+                >
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 shimmer" />
+                </motion.div>
+              </div>
+            </div>
+          </div>
         </div>
-      </motion.div>
-      <div className="space-y-2 w-full">
-        <div className="flex justify-between text-sm">
-          <span>Experience</span>
-          <span>{skill.experience}%</span>
-        </div>
-        <Progress value={skill.experience} className="w-full" />
+
+        {/* Hover Sparkle Effect */}
+        {isHovered && [...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+            transition={{
+              duration: 1,
+              delay: i * 0.2,
+              repeat: Infinity,
+            }}
+          >
+            <div className="w-1 h-1 bg-white rounded-full" />
+          </motion.div>
+        ))}
       </div>
     </motion.div>
   )
@@ -205,10 +437,8 @@ function ScrollAnimation({ children }) {
         const { top } = ref.current.getBoundingClientRect()
         const windowHeight = window.innerHeight
 
-        if (top < windowHeight) {
+        if (top < windowHeight * 0.75) {
           controls.start({ opacity: 1, y: 0 })
-        } else {
-          controls.start({ opacity: 0, y: 50 })
         }
       }
     }
@@ -224,7 +454,7 @@ function ScrollAnimation({ children }) {
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {children}
     </motion.div>
