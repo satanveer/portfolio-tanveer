@@ -11,6 +11,30 @@ import Link from 'next/link'
 
 const experiences = [
   {
+    title: "Fullstack Intern",
+    company: "Elucidata",
+    period: "Jan 2026 - Present",
+    logo: "/elucidata.png",
+    color: "from-purple-500 to-purple-600",
+    description: (
+      <>
+        Fullstack Intern at Elucidata, working on innovative biotech solutions.{' '}
+      </>
+    )
+  },
+  {
+    title: "Software Developer Intern",
+    company: "Fidelity International",
+    period: "Jan 2025 - Jul 2025",
+    logo: "/fil.jpeg",
+    color: "from-blue-500 to-blue-600",
+    description: (
+      <>
+        Software Developer Intern at Fidelity International.{' '}
+      </>
+    )
+  },
+  {
     title: "FOUNDER",
     company: "AssignmentPal",
     period: "Nov 2022 - Jan 2025",
@@ -30,23 +54,11 @@ const experiences = [
         </motion.button>
       </>
     )
-  },
-  {
-    title: "Software Developer Intern",
-    company: "Fidelity International",
-    period: "Jan 2025 - Jul 2025",
-    icon: Briefcase,
-    color: "from-blue-500 to-blue-600",
-    description: (
-      <>
-        Software Developer Intern at Fidelity International.{' '}
-      </>
-    )
   }
 ]
 
 const stats = [
-  { label: "Years Experience", value: "3+", icon: Calendar },
+  { label: "Years Experience", value: "1+", icon: Calendar },
   { label: "Projects Completed", value: "15+", icon: Code2 },
   { label: "Happy Clients", value: "100+", icon: Award },
 ]
@@ -92,27 +104,6 @@ export default function AboutMe() {
       </div>
 
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* iMessage Bubble */}
-        <motion.div
-          className="mb-12 flex justify-end"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="max-w-md">
-            <motion.div
-              className="bg-gray-700 text-white rounded-3xl rounded-tr-sm px-5 py-3 shadow-lg"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.2 }}
-            >
-              <p className="text-base leading-relaxed">
-                Let me tell you a bit about myself! Here&apos;s my journey, experience, and what drives me as a developer.
-              </p>
-            </motion.div>
-            <p className="text-xs text-gray-400 mt-1 mr-2 text-right">Just now</p>
-          </div>
-        </motion.div>
-
         {/* Header Section */}
         <FadeInWhenVisible>
           <div className="text-center mb-16">
@@ -229,10 +220,11 @@ export default function AboutMe() {
               transition={{ duration: 0.3 }}
             >
               <p className="text-lg leading-relaxed text-center">
-                Skilled in developing robust web applications using Next.js, React, Tailwind CSS, and MySQL. Proven ability to integrate APIs,
-                ensure responsive design, and enhance user experiences through dynamic front-end and efficient back-end development. Proficient
-                in object-oriented programming and modern web technologies. Additionally, a partner in an Academic Support Service, providing
-                assignment assistance to foreign students and serving over 100 clients.
+                Full-stack developer specializing in building scalable web applications with <span className="font-semibold gradient-text">React</span>, <span className="font-semibold gradient-text">Next.js</span>, 
+                <span className="font-semibold gradient-text">Spring Boot</span>, <span className="font-semibold gradient-text">Flask</span>, and <span className="font-semibold gradient-text">Django</span>. 
+                Expert in designing RESTful APIs, implementing authentication systems, and optimizing databases with <span className="font-semibold gradient-text">MySQL</span>, <span className="font-semibold gradient-text">MongoDB</span>, 
+                and <span className="font-semibold gradient-text">SQLite</span>. Proficient in creating responsive UIs with <span className="font-semibold gradient-text">Tailwind CSS</span> and integrating 
+                cloud services like <span className="font-semibold gradient-text">Appwrite</span>. Passionate about delivering high-performance, end-to-end solutions with clean code and exceptional user experiences.
               </p>
             </motion.div>
           </section>
@@ -283,11 +275,15 @@ export default function AboutMe() {
                         <div className="p-6 md:p-8 relative z-10 flex items-start gap-4">
                           {/* Icon */}
                           <motion.div
-                            className={`p-3 bg-gradient-to-br ${exp.color} rounded-xl shadow-lg flex-shrink-0`}
+                            className={`p-3 bg-gradient-to-br ${exp.color} rounded-xl shadow-lg flex-shrink-0 w-16 h-16 flex items-center justify-center`}
                             whileHover={{ rotate: 360, scale: 1.2 }}
                             transition={{ duration: 0.6 }}
                           >
-                            <exp.icon className="w-6 h-6 text-white" />
+                            {exp.logo ? (
+                              <img src={exp.logo} alt={exp.company} className="w-10 h-10 object-contain" />
+                            ) : (
+                              <exp.icon className="w-8 h-8 text-white" />
+                            )}
                           </motion.div>
 
                           {/* Content */}
@@ -322,7 +318,7 @@ export default function AboutMe() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Link href="https://drive.google.com/file/d/1zEFUVX3QJenXwfNuLoRNmbl-2Zj5Tdiv/view?usp=sharing" passHref legacyBehavior>
+              <Link href="https://drive.google.com/file/d/1HTuqFtyURELN43Z7UTVr_Qi5e5-0OavD/view?usp=sharing" passHref legacyBehavior>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"

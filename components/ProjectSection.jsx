@@ -8,12 +8,18 @@ import { ChevronDown, ChevronUp, ExternalLink, Github } from 'lucide-react'
 
 const projects = [
   {
-    title: "Our tube",
-    image: "/ourtube.png",
-    summary: "A video sharing website , utilizing youtubeApi",
-    githubLink: "https://github.com/satanveer/OurTube",
-    liveLink: "https://ourtube-4ff.pages.dev/",
-    techStack: ["React.js", "Next.js", "TailwindCSS"],
+    title: "Cohort Builder",
+    image: "/cohort-img.jpeg",
+    summary: "AI-powered patient cohort builder with clarification-first UX. Takes natural language queries, asks targeted questions, and generates safe parameterized SQL. Features transparent debugging with full visibility into LLM reasoning and query generation.",
+    githubLink: "https://github.com/satanveer/Cohort-Builder",
+    liveLink: null,
+    techStack: [
+      { name: "React", icon: "https://img.icons8.com/?size=100&id=wPohyHO_qO1a&format=png&color=000000" },
+      { name: "Flask", icon: "https://img.icons8.com/?size=100&id=ewGOClUtmFX4&format=png&color=000000" },
+      { name: "Gemini AI", icon: "https://img.icons8.com/?size=100&id=17949&format=png&color=000000" },
+      { name: "SQLite", icon: "https://img.icons8.com/?size=100&id=38561&format=png&color=000000" },
+      { name: "Tailwind", icon: "https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000" }
+    ],
     gradient: "from-purple-500 to-purple-600"
   },
   {
@@ -21,8 +27,12 @@ const projects = [
     image: "/bobbyflow.png",
     summary: "A productivity app with deep insights about your focus sessions, Pomodoro activity, Google Calendar integration, and note-taking ability.",
     githubLink: "https://github.com/satanveer/focus-flow",
-    liveLink: "https://focus-flow-eosin.vercel.app/",
-    techStack: ["React", "Appwrite", "TailwindCSS"],
+    liveLink: "https://www.bobbyflow.live/",
+    techStack: [
+      { name: "React", icon: "https://img.icons8.com/?size=100&id=wPohyHO_qO1a&format=png&color=000000" },
+      { name: "Appwrite", icon: "/appwrite.png" },
+      { name: "TailwindCSS", icon: "https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000" }
+    ],
     gradient: "from-purple-500 to-purple-600"
   },
   {
@@ -31,7 +41,11 @@ const projects = [
     summary: "A property dealing platform. Built with React, Spring Boot, and Tailwind.",
     githubLink: "https://github.com/satanveer/dhfe",
     liveLink: "https://dh-fe-psi.vercel.app/",
-    techStack: ["React", "Spring Boot", "TailwindCSS"],
+    techStack: [
+      { name: "React", icon: "https://img.icons8.com/?size=100&id=wPohyHO_qO1a&format=png&color=000000" },
+      { name: "Spring Boot", icon: "https://img.icons8.com/?size=100&id=90519&format=png&color=000000" },
+      { name: "TailwindCSS", icon: "https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000" }
+    ],
     gradient: "from-purple-500 to-purple-600"
   }
 ]
@@ -57,28 +71,6 @@ export default function ProjectsSection() {
         <div className="absolute top-1/4 -left-48 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob" />
         <div className="absolute top-1/3 -right-48 w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
       </div>
-
-      {/* iMessage Bubble */}
-      <motion.div
-        className="max-w-7xl mx-auto mb-12 flex justify-start relative z-10"
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-md">
-          <motion.div
-            className="bg-blue-500 text-white rounded-3xl rounded-tl-sm px-5 py-3 shadow-lg"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
-          >
-            <p className="text-base leading-relaxed">
-              Check out some of my favorite projects! Each one taught me something new and pushed my skills further.
-            </p>
-          </motion.div>
-          <p className="text-xs text-gray-400 mt-1 ml-2">Just now</p>
-        </div>
-      </motion.div>
 
       {/* Section Title */}
       <motion.div
@@ -182,9 +174,6 @@ function ProjectCard({ project, index }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Glowing Background */}
-      <div className={`absolute -inset-1 bg-gradient-to-r ${project.gradient} rounded-3xl blur-lg opacity-0 group-hover:opacity-75 transition-all duration-500`} />
-      
       <motion.div
         className="relative bg-card glass-strong rounded-3xl overflow-hidden shadow-2xl border border-white/10 card-3d"
         whileHover={{ 
@@ -204,9 +193,6 @@ function ProjectCard({ project, index }) {
             whileHover={{ scale: 1.15 }}
             transition={{ duration: 0.6 }}
           />
-          
-          {/* Gradient Overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-t ${project.gradient} opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
 
           {/* Quick Links Overlay */}
           <motion.div
@@ -239,7 +225,7 @@ function ProjectCard({ project, index }) {
 
         {/* Content */}
         <motion.div 
-          className="p-6 relative"
+          className="p-6 relative flex flex-col min-h-[420px]"
           variants={{
             visible: { opacity: 1, y: 0 },
             hidden: { opacity: 0, y: 20 }
@@ -260,7 +246,7 @@ function ProjectCard({ project, index }) {
 
           {/* Description */}
           <motion.p 
-            className="text-muted-foreground mb-6 min-h-[80px]"
+            className="text-muted-foreground mb-6 min-h-[120px]"
             variants={{
               visible: { opacity: 1, x: 0 },
               hidden: { opacity: 0, x: 20 }
@@ -277,15 +263,15 @@ function ProjectCard({ project, index }) {
               hidden: { opacity: 0, y: 20 }
             }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="mb-6"
+            className="mb-6 min-h-[100px]"
           >
             <h4 className="font-semibold mb-3 text-sm uppercase tracking-wider">Tech Stack</h4>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {project.techStack.map((tech, techIndex) => (
-                <motion.span
-                  key={tech}
-                  className={`px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r ${project.gradient} text-white shadow-lg`}
-                  whileHover={{ scale: 1.15, rotate: 5 }}
+                <motion.div
+                  key={tech.name}
+                  className="relative group/tech"
+                  whileHover={{ scale: 1.15, y: -5 }}
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ 
@@ -295,16 +281,21 @@ function ProjectCard({ project, index }) {
                     stiffness: 200
                   }}
                 >
-                  {tech}
-                </motion.span>
+                  <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm p-2 flex items-center justify-center shadow-lg border border-white/20">
+                    <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain" />
+                  </div>
+                  <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover/tech:opacity-100 transition-opacity duration-200 pointer-events-none">
+                    <span className="text-xs whitespace-nowrap bg-black/80 text-white px-2 py-1 rounded">{tech.name}</span>
+                  </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
 
           {/* Action Buttons */}
-          <div className="flex gap-3">
+          <div className="flex gap-3 mt-auto">
             <motion.div
-              className="flex-1"
+              className={project.liveLink ? "flex-1" : "w-full"}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -320,23 +311,25 @@ function ProjectCard({ project, index }) {
                 </a>
               </Button>
             </motion.div>
-            <motion.div
-              className="flex-1"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                asChild 
-                variant="outline" 
-                size="sm" 
-                className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white border-none shadow-lg"
+            {project.liveLink && (
+              <motion.div
+                className="flex-1"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
-                  <ExternalLink className="h-4 w-4" />
-                  <span>Live Demo</span>
-                </a>
-              </Button>
-            </motion.div>
+                <Button 
+                  asChild 
+                  variant="outline" 
+                  size="sm" 
+                  className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white border-none shadow-lg"
+                >
+                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2">
+                    <ExternalLink className="h-4 w-4" />
+                    <span>Live Demo</span>
+                  </a>
+                </Button>
+              </motion.div>
+            )}
           </div>
         </motion.div>
 

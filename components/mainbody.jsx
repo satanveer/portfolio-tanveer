@@ -62,6 +62,34 @@ const skills = [
     experience: 45,
     color: 'from-purple-500 to-purple-600'
   },
+  { 
+    name: 'Flask', 
+    logo: 'https://img.icons8.com/?size=100&id=ewGOClUtmFX4&format=png&color=000000', 
+    summary: 'Lightweight Python web framework', 
+    experience: 60,
+    color: 'from-purple-500 to-purple-600'
+  },
+  { 
+    name: 'Django', 
+    logo: 'https://img.icons8.com/?size=100&id=qV-JzWYl9dzP&format=png&color=000000', 
+    summary: 'High-level Python web framework', 
+    experience: 55,
+    color: 'from-purple-500 to-purple-600'
+  },
+  { 
+    name: 'Spring Boot', 
+    logo: 'https://img.icons8.com/?size=100&id=90519&format=png&color=000000', 
+    summary: 'Java-based framework for microservices', 
+    experience: 50,
+    color: 'from-purple-500 to-purple-600'
+  },
+  { 
+    name: 'Appwrite', 
+    logo: '/appwrite.png', 
+    summary: 'Open-source backend-as-a-service platform', 
+    experience: 65,
+    color: 'from-purple-500 to-purple-600'
+  },
 ]
 
 export default function Mainbody({ menuState }) {
@@ -125,28 +153,6 @@ export default function Mainbody({ menuState }) {
               }}
             />
           </div>
-
-          {/* iMessage Introduction */}
-          <motion.div
-            className="pt-24 pb-8 flex justify-start px-4 sm:px-6 lg:px-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="max-w-md">
-              <motion.div
-                className="bg-blue-500 text-white rounded-3xl rounded-tl-sm px-5 py-3 shadow-lg"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
-              >
-                <p className="text-sm font-medium">Hey there!</p>
-                <p className="text-base leading-relaxed mt-1">
-                  Welcome to my portfolio! I&apos;m Tanveer, a passionate full-stack developer who loves building amazing web experiences.
-                </p>
-              </motion.div>
-              <p className="text-xs text-gray-400 mt-1 ml-2">Just now</p>
-            </div>
-          </motion.div>
 
           {/* Hero Section with 3D Parallax */}
           <ScrollAnimation>
@@ -220,40 +226,9 @@ export default function Mainbody({ menuState }) {
             </div>
           </ScrollAnimation>
 
-          {/* Scroll Indicator */}
-          <motion.div
-            className="flex flex-col items-center gap-2 text-muted-foreground pb-12"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <p className="text-sm font-medium">Scroll to explore</p>
-            <ChevronDown className="w-6 h-6" />
-          </motion.div>
-
           {/* Skills Section */}
           <ScrollAnimation>
-            <div className="py-24 px-4 sm:px-6 lg:px-8 relative">
-              {/* iMessage Bubble */}
-              <motion.div
-                className="max-w-7xl mx-auto mb-12 flex justify-end"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="max-w-md">
-                  <motion.div
-                    className="bg-gray-700 text-white rounded-3xl rounded-tr-sm px-5 py-3 shadow-lg"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <p className="text-base leading-relaxed">
-                      Here are the technologies I work with! From frontend to backend, I&apos;ve got you covered.
-                    </p>
-                  </motion.div>
-                  <p className="text-xs text-gray-400 mt-1 mr-2 text-right">Just now</p>
-                </div>
-              </motion.div>
+            <div className="py-12 px-4 sm:px-6 lg:px-8 relative">
               {/* Section Title */}
               <motion.div
                 className="text-center mb-16"
